@@ -11,16 +11,14 @@ class Book(scrapy.Spider):
     start_urls = ['https://www.books.com.tw/']
 
     def __init__(self):
-        # self.client = pymongo.MongoClient("localhost",port = 27017)
-        # self.db = self.client.bookData
-        # self.collection = self.db.bookDec
+        #連接PyMySQL
         self.db = pymysql.connect("localhost", "root", "0inglanne", "bookdb")
         self.cursor = self.db.cursor()
+        #無頭模式自動操作網頁
         chrome_options = Options()
         chrome_options.add_argument('--headless')
         chrome_options.add_argument('--disable-gpu')
         self.driver = webdriver.Chrome(chrome_options = chrome_options)
-        # self.driver = webdriver.Chrome()
     
     def parse(self, response):
         key = input("輸入要爬取的商品:")
@@ -39,11 +37,10 @@ class Book(scrapy.Spider):
         print('Enter')
         time.sleep(3)
 
-        # c_db = "DROP TABLE IF EXISTS EMPLOYEE"
         c_tab = "INSERT INTO store02 (書名, 價錢, 出版, 簡介) VALUES (%s, %s, %s, %s)"
         self.cursor.execute("CREATE TABLE store02 (id INT AUTO_INCREMENT PRIMARY KEY, 書名 VARCHAR(255), 價錢 VARCHAR(255), 出版 VARCHAR(255), 簡介 VARCHAR(255))")
 
-
+        #爬取相應頁數並寫入數據庫
         for i in range(page):
             r_list = self.driver.find_elements_by_xpath('//ul[@class="searchbook"]//li')
             xList = []
