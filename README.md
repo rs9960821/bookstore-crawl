@@ -8,3 +8,4 @@
 
 專案環境：OS - Windows, DB - PyMySQL
 ![](https://github.com/rs9960821/bookstore-crawl/blob/master/Table.PNG?raw=true)
+![](https://github.com/rs9960821/bookstore-crawl/blob/master/Table2.PNG?raw=true)
