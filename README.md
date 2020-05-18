@@ -6,4 +6,4 @@
 開發工具：VS Code 
 
 專案環境：OS - Windows, DB - PyMySQL
-![]( Table.png)
+![](Table.png)
